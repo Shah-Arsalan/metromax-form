@@ -1,31 +1,69 @@
 import "./Form.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
+import { useProfile } from "../../ProfileContext";
 
 const Form = () => {
     const navigate = useNavigate();
   const [appear, setAppear] = useState(false);
-  const [profiles, setProfiles] = useState(JSON.parse(localStorage.getItem("Profiles")) ?? []);
+  const {setProfiles , profiles , profileDetails , setprofileDetails , isBeingEdited , setIsBeingEdited , currentProfile , setCurrentProfile} = useProfile();
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const [profileDetails, setprofileDetails] = useState({
-    fullname: "",
-    phno: "",
-    email: "",
-    state: "",
-    city: "",
-    dob: "",
-    gender: "",
-  });
+
 
   const saveProfile = () => {
-    setProfiles([...profiles, profileDetails]);
+    if(isBeingEdited){
+        console.log('being edited')
+        console.log('current Profile is' , currentProfile)
+        const index = profiles.findIndex((profile) => profile.id === currentProfile.id);
+        console.log(index)
+        const updatedProfile = { ...currentProfile, ...profileDetails};
+        
+        if (index !== -1) {
+          profiles[index] = updatedProfile;
+        }
+        
+        localStorage.setItem("Profiles", JSON.stringify(profiles));
+        navigate('/profiles');
+        setIsBeingEdited(false);
+        setCurrentProfile(null);
+        setprofileDetails({
+            id : uuidv4(),
+            fullname: "",
+            phno: "",
+            email: "",
+            state: "",
+            city: "",
+            dob: "",
+            gender: "",
+          })
+          showErrorModal("Details Saved!")
+    }else{
+        setprofileDetails({
+            ...profileDetails,
+            id: uuidv4(),
+          })
+    
+        setProfiles([...profiles, profileDetails]);
+        setprofileDetails({
+            id : uuidv4(),
+            fullname: "",
+            phno: "",
+            email: "",
+            state: "",
+            city: "",
+            dob: "",
+            gender: "",
+          })
+          showErrorModal("Details Saved!");
+    }
   };
 
 
-console.log('new prfiles are', profiles);
-
   const showErrorModal = (string) => {
-console.log(string);
+    setAppear(true);
+    setErrorMessage(string)
   }
 
   useEffect(() => {
@@ -170,6 +208,7 @@ console.log(string);
               <input
                 id="gender-1"
                 value="male"
+                checked={profileDetails.gender === 'male'}
                 placeholder="user@gmail.com"
                 className="input-txt"
                 type="radio"
@@ -186,6 +225,7 @@ console.log(string);
               <input
                 id="gender-2"
                 value="female"
+                checked={profileDetails.gender === 'female'}
                 className="input-txt"
                 type="radio"
                 name="gender"
@@ -211,7 +251,7 @@ console.log(string);
       </div>
       {appear && (
         <div className="error-msg">
-          <p></p>
+          <p>{errorMessage}</p>
           <p
             className="cross"
             onClick={() => {

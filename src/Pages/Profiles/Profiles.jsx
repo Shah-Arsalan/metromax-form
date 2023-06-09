@@ -1,10 +1,12 @@
 import './Profiles.css'
 import { ProfileCard } from "../../Components/ProfileCard/ProfileCard";
 import { useNavigate } from 'react-router';
+import { useState } from 'react';
+import { useProfile } from '../../ProfileContext';
 
 const Profiles = () => {
+    const {profiles} = useProfile();
     const navigate = useNavigate();
-const profiles = JSON.parse(localStorage.getItem("Profiles"));
 console.log('the profile page',profiles)
     return (<>
         <div className="profiles-container">

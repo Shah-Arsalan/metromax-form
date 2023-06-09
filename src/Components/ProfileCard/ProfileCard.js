@@ -1,6 +1,25 @@
+import { useNavigate } from 'react-router';
+import { useProfile } from '../../ProfileContext'
 import './ProfileCard.css'
 
 const ProfileCard = ({ele}) => {
+    const navigate = useNavigate();
+    const {profiles , setProfiles , setprofileDetails , setCurrentProfile , setIsBeingEdited} = useProfile();
+    const deleteHandler = (ele) => {
+        const newProfiles= profiles.filter(element => element.id !== ele.id );
+        localStorage.setItem(
+            "Profiles",
+            JSON.stringify(newProfiles)
+          );
+setProfiles(newProfiles);
+    }
+
+    const editHandler = (ele) => {
+        setIsBeingEdited(true);
+        setCurrentProfile(ele);
+        setprofileDetails(ele);
+        navigate('/');
+    }
 
     return (
         <div className="profile-card">
@@ -11,7 +30,7 @@ const ProfileCard = ({ele}) => {
                 <p>{ele.dob}</p>
                 <p>{ele.city}</p>
                 <p>{ele.state}</p>
-                <div><p>Delete</p><p>edit</p></div>
+                <div><button  onClick={()=>deleteHandler(ele) }>Delete</button><button onClick={()=>editHandler(ele)}>edit</button></div>
         </div>
     )
 }
