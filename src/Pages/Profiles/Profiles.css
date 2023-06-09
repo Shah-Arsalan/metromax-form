@@ -1,0 +1,8 @@
+.titles{
+    display: flex;
+    justify-content: space-between;
+}
+
+.profiles-container{
+    padding: 1rem;
+}
