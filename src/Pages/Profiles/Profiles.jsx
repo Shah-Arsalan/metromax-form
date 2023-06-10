@@ -1,34 +1,42 @@
-import './Profiles.css'
+import "./Profiles.css";
 import { ProfileCard } from "../../Components/ProfileCard/ProfileCard";
-import { useNavigate } from 'react-router';
-import { useState } from 'react';
-import { useProfile } from '../../ProfileContext';
+import { useNavigate } from "react-router";
+import { useProfile } from "../../ProfileContext";
 
 const Profiles = () => {
-    const {profiles} = useProfile();
-    const navigate = useNavigate();
-console.log('the profile page',profiles)
-    return (<>
-        <div className="profiles-container">
-            <div className="titles">
-            <p>Name</p>
-                <p>Ph NO</p>
-                <p>Email</p>
-                <p>Gender</p>
-                <p>D-O-B</p>
-                <p>City</p>
-                <p>State</p>
-                <p>Action</p>
+  const { profiles } = useProfile();
+  const navigate = useNavigate();
+  return (
+    <>
+    <div className="profiles-container">
+    <div className="profile-header font-sans">
+        <div className="logo">Profiles</div>
+        <button className="btn-profile" onClick={() => navigate("/")}>Add New Profile</button>
 
-            </div>
-            {   profiles.map((ele) => {
-            return <ProfileCard ele={ele}/>
-        })}
-        </div>
-        <button onClick={()=>navigate('/')}>Back</button>
-        </>
-     
-    )
-}
+    </div>
+      <table className="font-sans">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Ph Number</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>D.O.B</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {profiles.map((ele) => {
+            return <ProfileCard ele={ele} />;
+          })}
+        </tbody>
+      </table>
+      </div>
+    </>
+  );
+};
 
-export {Profiles}
+export { Profiles };
+

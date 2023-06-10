@@ -1,91 +1,130 @@
 
-  .login-container {
+  .details-container {
     font-family: roboto;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
   }
   
-  .login-inputs {
-    background-color: var(--white);
-    width: 25rem;
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    box-shadow: var(--shadow-box);
-    align-items: center;
-    padding: 2rem;
-  }
-  
-  .forgot-password a {
-    margin-left: auto;
-    text-decoration: none;
-  }
-  
-  .login-container button {
-    width: 100%;
-  }
-  
-  .login-container a {
-    text-decoration: none;
-    justify-content: center;
-  }
   
   .input {
-    margin: 0.75rem;
-    width: 80%;
-  }
-  
-  input[type="password"] {
-    border: 1px solid;
-  }
-  
-  input[type="email"] {
-    border: 1px solid;
-  }
-  
-  .form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    margin: 0.75rem;
+    width: 100%;
+    gap:.5rem;
+    
   }
   
+  input[type="text"] {
+    width: 100%;
+    padding: .5rem;
+    border-radius: .5rem;
+    border: 1px solid grey;
+  }
+
+  input[type="email"] {
+    width: 100%;
+    padding: .5rem;
+    border-radius: .5rem;
+    border: 1px solid grey;
+  }
+  
+  input[type="date"] {
+    width: 100%;
+    padding: .5rem;
+    border-radius: .5rem;
+    border: 1px solid grey;
+  }
+  
+
   
   .error-msg{
-    background-color: var(--white);
+    background-color: white;
     width: max-content;
-    padding: 1rem;
+    padding: .5rem 1rem;
     display: flex;
     gap: 1rem;
     align-items: center;
-    position: absolute;
-    top: 37rem;
-    left: 33rem;
-    border: 1px solid var(--red);
+    border: 1px solid black;
+    border-radius: 1rem;
+    justify-content: space-around;
   }
   
   .cross{
     cursor: pointer;
   }
-  
-  .input-icon{
+
+
+  .gender-container{
     display: flex;
-    align-items: center;
-    gap: 1rem;
+    width: 100%;
+    justify-content: space-between;
+    margin: 1rem;
   }
-  
-  .fa-eye{
-    border: 1px solid var(--black);
-    padding: 7px;
+
+  .primary-button{
+    padding: .5rem 3rem .5rem 3rem;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: .5rem;
+    background-color: black;
+    color: white;
     cursor: pointer;
-    border-radius: 5px;
-    font-size: 20px;
   }
+
+
+  .primary-button:hover{
+   background-color: rgb(50, 50, 48);
+  }
+
+  .form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .profile-page{
+    background-color: rgb(89, 86, 86);
+    height: 100vh;
+    color: white;
+  }
+
+  .gender-options{
+    display: flex;
+    cursor: pointer; 
+   }
+
+   .btn-container{
+display: flex;
+gap: .5rem;
+   }
   
-  .loginLink:hover{
-  cursor: pointer;
-  color: var(--primary-color);
-  }
+
+   .error-container{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5);
+   }
+
+   .btn-modal{
+    background-color: black;
+    color: white;
+    padding: .5rem;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+   }
+
+   .btn-modal:hover{
+    background-color: rgb(50, 50, 48);
+   }
+ 
