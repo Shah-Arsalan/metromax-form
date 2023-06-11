@@ -68,14 +68,13 @@
     background-color: white;
     border: 1px solid black;
     border-radius: .5rem;
-    background-color: black;
-    color: white;
+    color: black;
     cursor: pointer;
   }
 
 
   .primary-button:hover{
-   background-color: rgb(50, 50, 48);
+   background-color: rgb(229, 229, 208);
   }
 
   .form{
@@ -86,7 +85,7 @@
   }
 
   .profile-page{
-    background-color: rgb(89, 86, 86);
+    background-color: rgb(0, 0, 0);
     height: 100vh;
     color: white;
   }
