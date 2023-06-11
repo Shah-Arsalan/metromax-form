@@ -5,8 +5,14 @@ import { v4 as uuidv4 } from "uuid";
 import { useProfile } from "../../ProfileContext";
 
 const Form = () => {
-  const navigate = useNavigate(); 
+
+  // for navigating to other page 
+  const navigate = useNavigate();
+  
+  // for displaying modal upon error or successfull data entry
   const [appear, setAppear] = useState(false);
+
+  // getting data and data setters from context 
   const {
     setProfiles,
     profiles,
@@ -17,8 +23,12 @@ const Form = () => {
     currentProfile,
     setCurrentProfile,
   } = useProfile();
+
+  // for displaying error with form validation 
   const [errorMessage, setErrorMessage] = useState("");
 
+  // sets data in local storage if it is being edited to render the same profile card with different details otherwise ...
+  // just updates profiles got from context
   const saveProfile = () => {
     if (isBeingEdited) {
       const index = profiles.findIndex(
@@ -66,11 +76,13 @@ const Form = () => {
     }
   };
 
+  // shows modal for error and success 
   const showErrorModal = (string) => {
     setAppear(true);
     setErrorMessage(string);
   };
 
+  // runs whenever profiles change and saves data in local storage
   useEffect(() => {
     localStorage.setItem("Profiles", JSON.stringify(profiles));
   }, [profiles]);

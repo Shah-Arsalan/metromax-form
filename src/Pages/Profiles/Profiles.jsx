@@ -4,8 +4,8 @@ import { useNavigate } from "react-router";
 import { useProfile } from "../../ProfileContext";
 
 const Profiles = () => {
-  const { profiles } = useProfile();
-  const navigate = useNavigate();
+  const { profiles } = useProfile(); // get latest profiles from context 
+  const navigate = useNavigate(); // for navigation 
   return (
     <>
     <div className="profiles-container">

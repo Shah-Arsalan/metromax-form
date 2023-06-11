@@ -3,18 +3,21 @@ import { useProfile } from '../../ProfileContext';
 import './ProfileCard.css'
 
 const ProfileCard = ({ele}) => {
-    const navigate = useNavigate();
-    const {profiles , setProfiles , setprofileDetails , setCurrentProfile , setIsBeingEdited} = useProfile();
+    const navigate = useNavigate(); // for navigation 
+    const {profiles , setProfiles , setprofileDetails , setCurrentProfile , setIsBeingEdited} = useProfile(); // use of context 
     
+    // deletes specified user from local storage 
     const deleteHandler = (ele) => {
         const newProfiles= profiles.filter(element => element.id !== ele.id );
         localStorage.setItem(
             "Profiles",
             JSON.stringify(newProfiles)
           );
-setProfiles(newProfiles);
+setProfiles(newProfiles);  // necessary to render new data on listing page as it changes state there
     }
 
+
+// sets edit state to true based on which we determine whether to edit or not in forms file - saveProfile() function
     const editHandler = (ele) => {
         setIsBeingEdited(true);
         setCurrentProfile(ele);
