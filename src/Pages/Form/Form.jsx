@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useProfile } from "../../ProfileContext";
 
 const Form = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
   const [appear, setAppear] = useState(false);
   const {
     setProfiles,
@@ -123,6 +123,7 @@ const Form = () => {
               <label htmlFor="phno">Phone number</label>
               <input
                 id="phno"
+                placeholder="7006145222"
                 value={profileDetails.phno}
                 className="input-txt"
                 type="text"
@@ -155,6 +156,7 @@ const Form = () => {
               <label htmlFor="state">State</label>
               <input
                 id="state"
+                placeholder="Karnataka"
                 value={profileDetails.state}
                 className="input-txt"
                 type="text"
@@ -170,6 +172,7 @@ const Form = () => {
               <label htmlFor="city">City</label>
               <input
                 id="city"
+                placeholder="Bengalruru"
                 value={profileDetails.city}
                 className="input-txt"
                 type="text"
